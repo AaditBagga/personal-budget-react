@@ -1,7 +1,13 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import ChartPage from './ChartPage';
 
 function HomePage() {
+    const [showChart, setShowChart] = useState(false);
+
+    const toggleChart = () => {
+        setShowChart(!showChart);
+    };
+
   return (
     <main role="main"> 
         <div className="container center">
@@ -65,10 +71,12 @@ function HomePage() {
 
                 <article className="text-box">
                     <h1>Charts</h1>
-                    <p>
-                        <canvas id="myChart" width="400" height="400"></canvas>
-                        <svg id="d3PieChart" width="400" height="400"></svg>
-                    </p>
+                    <div>
+                        <button onClick={toggleChart}>
+                            {showChart ? 'Hide Chart' : 'Show Chart'}
+                        </button>
+                        {showChart && <ChartPage />}
+                    </div>
                 </article>
 
             </section>
